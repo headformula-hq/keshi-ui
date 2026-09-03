@@ -1,0 +1,264 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Keshi LIVE design tokens */
+  --color-ink: #16181c;
+  --color-ink-soft: #41474f;
+  --color-brand: #2f6fcb;
+  --color-brand-soft: #eaf0f7;
+  --color-up: #1f9d57;
+  --color-up-soft: #e7f4ec;
+  --color-down: #c24a33;
+  --color-down-soft: #f7ece9;
+  --color-muted: #757c86;
+  --color-muted2: #9aa1ab;
+  --color-line: #e6e9ed;
+  --color-line-strong: #d6dae0;
+  --color-bg: #f2f3f5;
+  --color-surface: #ffffff;
+  --color-surface2: #f6f8fa;
+  --color-slate: #3a4250;
+  --color-gold: #c8922e;
+  --color-gold-soft: #f3ead6;
+
+  --font-serif: var(--font-creato), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-creato), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-card: 18px;
+}
+
+/* Night mode — neutral dark (no blue tint) */
+html.dark {
+  --color-ink: #ededee;
+  --color-ink-soft: #b9b9bb;
+  --color-brand: #6f9bf0;
+  --color-brand-soft: #20242c;
+  --color-up: #45c483;
+  --color-up-soft: #16271d;
+  --color-down: #e57058;
+  --color-down-soft: #2a1815;
+  --color-muted: #9a9a9d;
+  --color-muted2: #6d6d70;
+  --color-line: #2b2b2d;
+  --color-line-strong: #3a3a3d;
+  --color-bg: #0e0e0f;
+  --color-surface: #161617;
+  --color-surface2: #1e1e20;
+  --color-slate: #c5c5c8;
+  --color-gold: #d8a444;
+  --color-gold-soft: #2a2316;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+}
+
+/* Hide the scrollbar visually without disabling scrolling */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Smooth momentum scrolling + hidden scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Liquid glass — light surface (frosted, translucent) */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 2px 10px rgba(17, 18, 20, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+/* Liquid glass — dark surface (for night mode, over the animated video) */
+html.dark .glass {
+  background: rgba(16, 16, 19, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle liquid glass on hover */
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+html.dark .glass-hover:hover {
+  background: rgba(34, 34, 38, 0.5);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Eyebrow label: uppercase, wide tracking */
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--color-muted2);
+}
+
+/* Tabular numbers for prices/figures */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Card primitive — flat, elevated above the page surface */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+}
+
+/* Interactive (clickable) card: subtle lift + accent on hover */
+.card-hover {
+  cursor: pointer;
+}
+.card-hover:hover {
+  border-color: var(--color-line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -20px rgba(17, 18, 20, 0.22);
+}
+html.dark .card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 36px -22px rgba(0, 0, 0, 0.7);
+}
+
+/* Informational card: just brighten the border on hover */
+.card-static:hover {
+  border-color: var(--color-line-strong);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Pill filter / segmented control */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.375rem 0.875rem;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-muted);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  cursor: pointer;
+}
+.chip:hover {
+  color: var(--color-ink);
+  border-color: var(--color-line-strong);
+}
+.chip-active,
+.chip-active:hover {
+  color: var(--color-surface);
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+/* Keyboard accessibility — visible focus ring (mouse clicks stay clean).
+   In @layer base so per-element utilities (e.g. focus:outline-none on the
+   search input) can opt out cleanly. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+/* Sidebar nav: no harsh blue box on click/navigation. Keyboard users still get
+   a subtle neutral cue; the active page is already shown by the glass state. */
+.sidebar-link:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--color-line-strong);
+}
+
+/* Staggered entrance */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Popover that expands out of its trigger (e.g. notifications bell) */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.pop-in {
+  transform-origin: top right;
+  animation: pop-in 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pop-in {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+    opacity: 1;
+  }
+}
