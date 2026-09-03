@@ -29,6 +29,32 @@ describe("Sidebar", () => {
     expect(screen.getByText("piede")).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Flusso" })).toBeInTheDocument();
   });
+
+  const soloVoci = [{ items: [{ label: "Panoramica", href: "/app", icon: "overview" as const, exact: true }] }];
+
+  it("con una sola sezione senza titolo il <nav> è la colonna: nessun contenitore intermedio", () => {
+    const { container } = render(<Sidebar logo={<span>L</span>} sections={soloVoci} pathname="/app" />);
+    const nav = screen.getByRole("navigation");
+    expect(nav.className).toBe("relative mt-9 flex flex-1 flex-col gap-1");
+    // il <nav> è fratello del logo, non nipote
+    expect(nav.previousElementSibling!.tagName).toBe("A");
+    expect(container.querySelector(".gap-5")).toBeNull();
+  });
+
+  it("con più sezioni il contenitore le distanzia e ogni <nav> resta una lista", () => {
+    const { container } = render(
+      <Sidebar
+        logo={<span>L</span>}
+        pathname="/app"
+        sections={[soloVoci[0], { label: "Altro", items: [{ label: "Impostazioni", href: "/app/impostazioni", icon: "gear" as const }] }]}
+      />,
+    );
+    const wrapper = container.querySelector("div.gap-5")!;
+    expect(wrapper.className).toBe("relative mt-9 flex flex-1 flex-col gap-5");
+    const navs = screen.getAllByRole("navigation");
+    expect(navs).toHaveLength(2);
+    for (const nav of navs) expect(nav.className).toBe("flex flex-col gap-1");
+  });
 });
 
 describe("ThemeToggle", () => {
@@ -67,5 +93,11 @@ describe("AppShell", () => {
   it("Topbar senza slot rende comunque un header", () => {
     render(<Topbar />);
     expect(screen.getByRole("banner")).toBeInTheDocument();
+  });
+  it("Topbar mette search e actions come figli diretti dell'header", () => {
+    render(<Topbar search={<input aria-label="Cerca" className="relative flex-1" />} actions={<button>azione</button>} />);
+    const header = screen.getByRole("banner");
+    expect(screen.getByLabelText("Cerca").parentElement).toBe(header);
+    expect(screen.getByRole("button", { name: "azione" }).parentElement).toBe(header);
   });
 });
