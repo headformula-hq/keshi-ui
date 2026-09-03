@@ -8,3 +8,5 @@ export { Button, type ButtonVariant } from "./primitives/button";
 export { Table, Th, Tr, Td } from "./primitives/table";
 export { EmptyState } from "./primitives/empty-state";
 export { Skeleton } from "./primitives/skeleton";
+export { Modal } from "./primitives/modal";
+export { ToastProvider, useToast } from "./primitives/toast";
