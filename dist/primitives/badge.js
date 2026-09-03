@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 const TONE = {
     neutral: "bg-surface2 text-muted",
     up: "bg-up-soft text-up",

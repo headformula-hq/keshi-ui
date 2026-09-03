@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 export function Table({ children, minWidth = 640, className }) {
     return (_jsx("div", { className: cx("overflow-x-auto", className), children: _jsx("table", { className: "w-full text-left", style: { minWidth }, children: children }) }));
 }

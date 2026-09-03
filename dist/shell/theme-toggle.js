@@ -1,7 +1,7 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useState } from "react";
-import { Sun, Moon } from "../icons";
+import { Sun, Moon } from "../icons/index.js";
 /** Da inserire in <head> con dangerouslySetInnerHTML per evitare il flash del tema. */
 export const THEME_INIT_SCRIPT = "try{if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark')}}catch(e){}";
 export function ThemeToggle({ className = "" }) {

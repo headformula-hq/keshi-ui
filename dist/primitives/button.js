@@ -1,8 +1,8 @@
 "use client";
 import { jsx as _jsx } from "react/jsx-runtime";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 const VARIANT = {
-    primary: "bg-ink text-surface hover:opacity-90 dark:bg-white dark:text-ink",
+    primary: "bg-ink text-surface hover:opacity-90 dark:bg-white dark:text-bg",
     secondary: "border border-line bg-surface text-ink hover:border-line-strong",
     ghost: "text-muted hover:text-ink hover:bg-surface2",
     danger: "bg-down-soft text-down hover:opacity-90",

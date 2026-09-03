@@ -1,7 +1,7 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import Link from "next/link";
-import { Overview, Materials, Tag, Swap, Bell, Gear, Upload, Cards, Send, Trash, Shield, Logout } from "../icons";
+import { Overview, Materials, Tag, Swap, Bell, Gear, Upload, Cards, Send, Trash, Shield, Logout } from "../icons/index.js";
 // Le voci arrivano spesso da un server component: l'icona è un NOME serializzabile, risolto qui.
 const ICONS = { overview: Overview, materials: Materials, tag: Tag, swap: Swap, bell: Bell, gear: Gear, upload: Upload, cards: Cards, send: Send, trash: Trash, shield: Shield, logout: Logout };
 export function isActivePath(pathname, href, exact = false) {
