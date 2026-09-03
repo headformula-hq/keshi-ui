@@ -1,0 +1,28 @@
+import type { SVGProps } from "react";
+export type IconProps = SVGProps<SVGSVGElement>;
+type I = IconProps;
+export declare const Logo: (p: I) => import("react").JSX.Element;
+export declare const KeshiLogo: (p: I) => import("react").JSX.Element;
+export declare const Sun: (p: I) => import("react").JSX.Element;
+export declare const Moon: (p: I) => import("react").JSX.Element;
+export declare const Overview: (p: I) => import("react").JSX.Element;
+export declare const Materials: (p: I) => import("react").JSX.Element;
+export declare const Tag: (p: I) => import("react").JSX.Element;
+export declare const Swap: (p: I) => import("react").JSX.Element;
+export declare const Bell: (p: I) => import("react").JSX.Element;
+export declare const Close: (p: I) => import("react").JSX.Element;
+export declare const Check: (p: I) => import("react").JSX.Element;
+export declare const Search: (p: I) => import("react").JSX.Element;
+export declare const ChevronDown: (p: I) => import("react").JSX.Element;
+export declare const ArrowUpRight: (p: I) => import("react").JSX.Element;
+export declare const TrendArrow: ({ dir, ...p }: I & {
+    dir?: "up" | "down";
+}) => import("react").JSX.Element;
+export declare const Gear: (p: I) => import("react").JSX.Element;
+export declare const Upload: (p: I) => import("react").JSX.Element;
+export declare const Cards: (p: I) => import("react").JSX.Element;
+export declare const Send: (p: I) => import("react").JSX.Element;
+export declare const Trash: (p: I) => import("react").JSX.Element;
+export declare const Shield: (p: I) => import("react").JSX.Element;
+export declare const Logout: (p: I) => import("react").JSX.Element;
+export {};

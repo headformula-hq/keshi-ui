@@ -1,17 +1,31 @@
 {
   "name": "keshi-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "private": false,
   "license": "UNLICENSED",
   "description": "Design system condiviso delle app Keshi (token, font, shell, primitive) per Next.js 16 + Tailwind v4",
   "repository": "github:headformula-hq/keshi-ui",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-    "./shell": { "types": "./dist/shell/index.d.ts", "default": "./dist/shell/index.js" },
-    "./icons": { "types": "./dist/icons/index.d.ts", "default": "./dist/icons/index.js" },
-    "./font": { "types": "./dist/font.d.ts", "default": "./dist/font.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./shell": {
+      "types": "./dist/shell/index.d.ts",
+      "default": "./dist/shell/index.js"
+    },
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "default": "./dist/icons/index.js"
+    },
+    "./font": {
+      "types": "./dist/font.d.ts",
+      "default": "./dist/font.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./fonts/*": "./dist/fonts/*"
   },
