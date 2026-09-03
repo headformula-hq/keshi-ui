@@ -1,11 +1,11 @@
 "use client";
 
 import type { ButtonHTMLAttributes } from "react";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 const VARIANT: Record<ButtonVariant, string> = {
-  primary: "bg-ink text-surface hover:opacity-90 dark:bg-white dark:text-ink",
+  primary: "bg-ink text-surface hover:opacity-90 dark:bg-white dark:text-bg",
   secondary: "border border-line bg-surface text-ink hover:border-line-strong",
   ghost: "text-muted hover:text-ink hover:bg-surface2",
   danger: "bg-down-soft text-down hover:opacity-90",

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Card, PageHeader, Badge, LiveBadge, Button, Table, Th, Tr, Td, EmptyState, Skeleton, cx } from "../index";
+import { Card, PageHeader, Badge, LiveBadge, Button, Table, Th, Tr, Td, EmptyState, Skeleton, cx } from "../index.js";
 
 describe("cx", () => {
   it("unisce solo le classi vere", () => {
@@ -93,5 +93,15 @@ describe("Skeleton", () => {
     const { container } = render(<Skeleton lines={3} />);
     expect(container.firstChild).toHaveAttribute("aria-hidden", "true");
     expect(container.querySelectorAll(".animate-pulse").length).toBe(3);
+  });
+});
+
+describe("Button primary in tema scuro", () => {
+  it("al buio usa dark:text-bg (non dark:text-ink, che al buio è chiaro)", () => {
+    render(<Button>Salva</Button>);
+    const cls = screen.getByRole("button", { name: "Salva" }).className;
+    expect(cls).toContain("dark:bg-white");
+    expect(cls).toContain("dark:text-bg");
+    expect(cls).not.toContain("dark:text-ink");
   });
 });
