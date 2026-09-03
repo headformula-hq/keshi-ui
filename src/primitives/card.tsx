@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 
 export function Card({
   children, className, variant = "flat", hover = false, as = "div", style,

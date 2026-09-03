@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import * as icons from "./index";
+import * as icons from "./index.js";
 
 const NAMES = ["Logo", "KeshiLogo", "Sun", "Moon", "Overview", "Materials", "Tag", "Swap", "Bell", "Close", "Check", "Search", "ChevronDown", "ArrowUpRight", "TrendArrow", "Gear", "Upload", "Cards", "Send", "Trash", "Shield", "Logout"] as const;
 

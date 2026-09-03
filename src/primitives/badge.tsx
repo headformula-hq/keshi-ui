@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 
 export type BadgeTone = "neutral" | "up" | "down" | "brand" | "gold";
 const TONE: Record<BadgeTone, string> = {

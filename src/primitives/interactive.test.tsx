@@ -1,6 +1,6 @@
 import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Modal, ToastProvider, useToast, Button } from "../index";
+import { Modal, ToastProvider, useToast, Button } from "../index.js";
 
 describe("Modal", () => {
   it("chiuso: non rende nulla", () => {

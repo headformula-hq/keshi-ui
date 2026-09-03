@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Sidebar, ThemeToggle, THEME_INIT_SCRIPT, isActivePath, AppShell, Topbar } from "./index";
+import { Sidebar, ThemeToggle, THEME_INIT_SCRIPT, isActivePath, AppShell, Topbar } from "./index.js";
 vi.mock("next/link", () => ({ default: ({ href, children, ...rest }: any) => <a href={href} {...rest}>{children}</a> }));
 vi.mock("next/navigation", () => ({ usePathname: () => "/dashboard/import" }));
 

@@ -2,8 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { Sidebar, type SidebarProps } from "./sidebar";
-import { Topbar } from "./topbar";
+import { Sidebar, type SidebarProps } from "./sidebar.js";
+import { Topbar } from "./topbar.js";
 
 export function AppShell({
   sidebar, topbar, children,

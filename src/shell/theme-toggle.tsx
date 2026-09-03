@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sun, Moon } from "../icons";
+import { Sun, Moon } from "../icons/index.js";
 
 /** Da inserire in <head> con dangerouslySetInnerHTML per evitare il flash del tema. */
 export const THEME_INIT_SCRIPT =

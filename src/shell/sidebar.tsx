@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Overview, Materials, Tag, Swap, Bell, Gear, Upload, Cards, Send, Trash, Shield, Logout, type IconProps } from "../icons";
+import { Overview, Materials, Tag, Swap, Bell, Gear, Upload, Cards, Send, Trash, Shield, Logout, type IconProps } from "../icons/index.js";
 
 export type IconName = "overview" | "materials" | "tag" | "swap" | "bell" | "gear" | "upload" | "cards" | "send" | "trash" | "shield" | "logout";
 // Le voci arrivano spesso da un server component: l'icona è un NOME serializzabile, risolto qui.

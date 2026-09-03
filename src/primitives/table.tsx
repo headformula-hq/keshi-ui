@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode, TdHTMLAttributes, ThHTMLAttributes } from "react";
-import { cx } from "./cx";
+import { cx } from "./cx.js";
 
 export function Table({ children, minWidth = 640, className }: { children: ReactNode; minWidth?: number; className?: string }) {
   return (
