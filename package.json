@@ -22,10 +22,6 @@
       "types": "./dist/icons/index.d.ts",
       "default": "./dist/icons/index.js"
     },
-    "./font": {
-      "types": "./dist/font.d.ts",
-      "default": "./dist/font.js"
-    },
     "./styles.css": "./dist/styles.css",
     "./fonts/*": "./dist/fonts/*"
   },

@@ -12,7 +12,6 @@ npm i keshi-ui@github:headformula-hq/keshi-ui#vX.Y.Z
 | `keshi-ui` (`.`) | Primitive: `Card`, `PageHeader`, `Badge`, `LiveBadge`, `Button`, `Table`/`Th`/`Tr`/`Td`, `EmptyState`, `Skeleton`, `Modal`, `ToastProvider`/`useToast`, `cx` | `import { Button, Card } from "keshi-ui";` |
 | `keshi-ui/shell` | `AppShell`, `Sidebar`, `Topbar`, `ThemeToggle`, `THEME_INIT_SCRIPT`, `ShaderBackground`, `GlassVeil`, `isActivePath`, tipi `IconName`/`SidebarItem`/`SidebarSection`/`SidebarProps` | `import { AppShell } from "keshi-ui/shell";` |
 | `keshi-ui/icons` | Set di icone SVG (`Overview`, `Materials`, `Tag`, `Swap`, `Bell`, `Gear`, `Upload`, `Cards`, `Send`, `Trash`, `Shield`, `Logout`, `Sun`, `Moon`, ecc.) | `import { Overview } from "keshi-ui/icons";` |
-| `keshi-ui/font` | `createCreatoFont()`, wrapper di `next/font/local` per Creato Display — **non usabile dentro Next**, vedi §2 | solo fuori da un'app Next |
 | `keshi-ui/styles.css` | Token CSS (colori, spaziature) e utility condivise (`.glass`, `.sidebar-link`, `.eyebrow`, ecc.) | `@import "keshi-ui/styles.css";` in `app/globals.css` |
 | `keshi-ui/fonts/*` | I file `.otf` di Creato Display | Referenziati da `localFont` nell'app: `../node_modules/keshi-ui/dist/fonts/*.otf` |
 
@@ -30,10 +29,11 @@ I due `@import` iniziali restano dell'app ospite; il resto (token, utility) arri
 
 ### 2. `app/layout.tsx`
 
-> **`createCreatoFont()` NON è utilizzabile in un'app Next.** `next/font` pretende che il loader
-> sia *chiamato* in module scope di un file dell'app (`Font loaders must be called and assigned to a
-> const in the module scope`), quindi rifiuta qualunque wrapper-funzione importato da un pacchetto.
-> Nell'app va copiato il `localFont({...})` con i path del pacchetto, come qui sotto.
+> **Il font si dichiara nell'app, non nel pacchetto.** `next/font` pretende che il loader sia
+> *chiamato* in module scope di un file dell'app (`Font loaders must be called and assigned to a
+> const in the module scope`), quindi rifiuta qualunque wrapper-funzione importata da un pacchetto:
+> per questo `keshi-ui/font` non esiste più. Il pacchetto continua a servire i `.otf` via
+> `keshi-ui/fonts/*`; lo snippet qui sotto va copiato tale e quale in `app/layout.tsx`.
 
 `THEME_INIT_SCRIPT` evita il flash del tema scuro leggendo `localStorage['theme']` prima dell'idratazione; `ShaderBackground` e `GlassVeil` vanno nel `<body>`, dietro alla UI:
 
@@ -41,13 +41,25 @@ I due `@import` iniziali restano dell'app ospite; il resto (token, utility) arri
 import localFont from "next/font/local";
 import { THEME_INIT_SCRIPT, ShaderBackground, GlassVeil } from "keshi-ui/shell";
 
-// I path sono relativi a questo file: ../node_modules/keshi-ui/dist/fonts/*.otf
+// I path sono relativi a questo file: da app/layout.tsx sono ../node_modules/keshi-ui/dist/fonts/*.otf
 const creato = localFont({
   variable: "--font-creato",
   display: "swap",
   src: [
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-Thin.otf", weight: "100", style: "normal" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-ThinItalic.otf", weight: "100", style: "italic" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-Light.otf", weight: "300", style: "normal" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-LightItalic.otf", weight: "300", style: "italic" },
     { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-Regular.otf", weight: "400", style: "normal" },
-    // … gli altri 13 tagli
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-RegularItalic.otf", weight: "400", style: "italic" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-Medium.otf", weight: "500", style: "normal" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-MediumItalic.otf", weight: "500", style: "italic" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-Bold.otf", weight: "700", style: "normal" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-BoldItalic.otf", weight: "700", style: "italic" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-ExtraBold.otf", weight: "800", style: "normal" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-ExtraBoldItalic.otf", weight: "800", style: "italic" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-Black.otf", weight: "900", style: "normal" },
+    { path: "../node_modules/keshi-ui/dist/fonts/CreatoDisplay-BlackItalic.otf", weight: "900", style: "italic" },
   ],
 });
 
@@ -75,7 +87,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 - `Topbar`: `search` e `actions` sono figli **diretti** dell'`<header>`. La larghezza la porta l'elemento di ricerca (es. `className="relative flex-1"`), la Topbar non aggiunge wrapper.
 
 ```tsx
-import { AppShell } from "keshi-ui/shell";
+import { AppShell, ThemeToggle } from "keshi-ui/shell";
+import { Button } from "keshi-ui";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
