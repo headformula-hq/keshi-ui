@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link.js";
 import { cx } from "./cx.js";
 
 export type TabItem = { label: string; href?: string; active?: boolean; count?: number; onClick?: () => void };
@@ -10,9 +11,10 @@ const TAB_ON = "font-semibold text-ink";
 const TAB_OFF = "font-medium text-muted2 hover:text-ink";
 
 /**
- * Riga di tab. Con `href` ogni voce è un <a> con `aria-current="page"` sull'attiva
- * (nav admin, filtri di stato di Pubblica); senza `href` è un <button type="button">
- * con `aria-pressed` (intervalli, selettori locali).
+ * Riga di tab. Con `href` ogni voce è un `Link` di Next (soft-nav + prefetch, come la
+ * Sidebar) con `aria-current="page"` sull'attiva (nav admin, filtri di stato di
+ * Pubblica); senza `href` è un <button type="button"> con `aria-pressed`
+ * (intervalli, selettori locali).
  * `count` si rende come « · N » preceduto da uno spazio reale, così il nome
  * accessibile è "In coda · 3" e non "In coda· 3".
  */
@@ -33,9 +35,9 @@ export function Tabs({ items, ariaLabel, className }: { items: TabItem[]; ariaLa
           </>
         );
         return item.href ? (
-          <a key={item.href} href={item.href} aria-current={item.active ? "page" : undefined} className={cls}>
+          <Link key={item.href} href={item.href} aria-current={item.active ? "page" : undefined} className={cls}>
             {inner}
-          </a>
+          </Link>
         ) : (
           <button key={item.label} type="button" aria-pressed={!!item.active} onClick={item.onClick} className={cls}>
             {inner}

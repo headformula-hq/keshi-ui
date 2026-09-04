@@ -22,8 +22,9 @@ function sorgenti(dir: string): string[] {
 const NEXT_IMPORT = /\bfrom\s*["'](next\/[^"']+)["']/g;
 
 describe("import da next/* con estensione .js", () => {
-  it("sidebar.tsx importa next/link.js e app-shell.tsx next/navigation.js", () => {
+  it("sidebar.tsx e tabs.tsx importano next/link.js, app-shell.tsx next/navigation.js", () => {
     expect(readFileSync(join(SRC, "shell/sidebar.tsx"), "utf8")).toContain('from "next/link.js"');
+    expect(readFileSync(join(SRC, "primitives/tabs.tsx"), "utf8")).toContain('from "next/link.js"');
     expect(readFileSync(join(SRC, "shell/app-shell.tsx"), "utf8")).toContain('from "next/navigation.js"');
   });
 

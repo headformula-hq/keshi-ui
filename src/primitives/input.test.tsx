@@ -5,9 +5,15 @@ import { Input, Select, Textarea, FIELD_CLASS } from "../index.js";
 describe("FIELD_CLASS", () => {
   it("è la ricetta §2.10 senza dark: né colori grezzi", () => {
     expect(FIELD_CLASS).toBe(
-      "rounded-xl border border-line/60 bg-transparent p-2.5 text-[13.5px] text-ink outline-none focus:border-brand/50 disabled:opacity-50",
+      "rounded-xl border border-line/60 bg-transparent p-2.5 text-[13.5px] text-ink focus:border-brand/50 disabled:opacity-50",
     );
     expect(FIELD_CLASS).not.toMatch(/dark:|#[0-9a-fA-F]{3}/);
+  });
+
+  it("non spegne l'anello :focus-visible globale (niente outline-none, nel token né sul controllo)", () => {
+    expect(FIELD_CLASS).not.toMatch(/\boutline-none\b/);
+    render(<Input aria-label="Campo" />);
+    expect(screen.getByLabelText("Campo")).not.toHaveClass("outline-none");
   });
 });
 

@@ -9,5 +9,5 @@ const VALUE = { neutral: "text-ink", up: "text-up", down: "text-down" };
  * che è l'unico output in sola lettura che i test del catalogo leggono.
  */
 export function Stat({ label, value, caption, tone = "neutral", className, style, testId, }) {
-    return (_jsxs(Card, { className: cx("p-4", className), style: style, children: [_jsx("div", { className: "eyebrow !text-[9px]", children: label }), _jsx("div", { "data-testid": testId, className: cx("tnum mt-2 font-serif text-[22px] font-semibold", VALUE[tone]), children: value }), caption && _jsx("div", { className: "mt-1 text-[11px] text-muted2", children: caption })] }));
+    return (_jsxs(Card, { className: cx("p-4", className), style: style, children: [_jsx("div", { className: "eyebrow !text-[9px]", children: label }), _jsx("div", { "data-testid": testId, className: cx("tnum mt-2 font-serif text-[22px] font-semibold", VALUE[tone]), children: value }), caption ? _jsx("div", { className: "mt-1 text-[11px] text-muted2", children: caption }) : null] }));
 }

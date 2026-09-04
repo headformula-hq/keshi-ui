@@ -35,6 +35,13 @@ describe("Stat", () => {
     expect(container.firstChild).toHaveStyle({ animationDelay: "120ms" });
   });
 
+  it("caption 0 (numero) non si rende come «0»; una caption stringa sì", () => {
+    const { rerender } = render(<Stat label="Errori" value="5" caption={0} />);
+    expect(screen.queryByText("0")).toBeNull();
+    rerender(<Stat label="Errori" value="5" caption="su 12 schede" />);
+    expect(screen.getByText("su 12 schede")).toBeInTheDocument();
+  });
+
   it("value e caption accettano ReactNode", () => {
     render(<Stat label="Prezzo" value={<><span>€</span> 1.240</>} caption={<em>medio</em>} />);
     expect(screen.getByText("€")).toBeInTheDocument();

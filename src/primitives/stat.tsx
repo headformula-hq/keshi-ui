@@ -21,7 +21,7 @@ export function Stat({
     <Card className={cx("p-4", className)} style={style}>
       <div className="eyebrow !text-[9px]">{label}</div>
       <div data-testid={testId} className={cx("tnum mt-2 font-serif text-[22px] font-semibold", VALUE[tone])}>{value}</div>
-      {caption && <div className="mt-1 text-[11px] text-muted2">{caption}</div>}
+      {caption ? <div className="mt-1 text-[11px] text-muted2">{caption}</div> : null}
     </Card>
   );
 }

@@ -116,6 +116,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 - `Field` avvolge il controllo in una `<label>` (o usa `htmlFor`), così `getByLabelText` funziona senza `id`; `help`/`error` non entrano nel nome accessibile.
 - Import interni `next/link.js` e `next/navigation.js` con estensione: la dist si carica anche con l'`import()` nativo di Node (Vitest senza `server.deps.inline`).
 
+### 5. Novità v0.2.1
+
+- `Tabs`: le voci con `href` sono `Link` di `next/link.js` (soft-nav + prefetch, come la `Sidebar`) invece di `<a>` nativi; firma e markup accessibile (`aria-current="page"` sull'attiva) invariati. Nei test dell'app ospite che mockano `next/link` senza `server.deps.inline` il mock non raggiunge il pacchetto: in jsdom il `Link` reale rende comunque un `<a href>`.
+- `FIELD_CLASS` (`Input`/`Select`/`Textarea`) non contiene più `outline-none`: torna l'anello `:focus-visible` globale di `styles.css`, in aggiunta a `focus:border-brand/50`.
+- `Stat`: una `caption` vuota o falsy (`0`, `""`, `null`) non rende la terza riga.
+
 ## Rilasciare una nuova versione
 
 ```bash
