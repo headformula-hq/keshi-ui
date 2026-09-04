@@ -1,6 +1,6 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation.js";
 import { Sidebar } from "./sidebar.js";
 import { Topbar } from "./topbar.js";
 export function AppShell({ sidebar, topbar, children, }) {

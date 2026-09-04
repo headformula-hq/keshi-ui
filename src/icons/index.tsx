@@ -168,3 +168,87 @@ export const Logout = (p: I) => (
     <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M15 8l4 4-4 4M19 12H9" />
   </svg>
 );
+
+// --- v0.2.0: icone per il catalogo (stesso contratto base(): 24 viewBox, 1.7, currentColor) ---
+
+// Attenzione: `Image` ombreggia il costruttore DOM `Image` nel modulo che la importa;
+// chi usa anche `new Image()` importi `Image as ImageIcon`.
+export const Image = (p: I) => (
+  <svg {...base(p)}>
+    <rect x="3.5" y="5" width="17" height="14" rx="2.2" />
+    <circle cx="9" cy="10" r="1.6" />
+    <path d="m3.5 16.5 4.6-4.6a1.5 1.5 0 0 1 2.1 0L15 16.7" />
+    <path d="m13 14.7 1.9-1.9a1.5 1.5 0 0 1 2.1 0l3.5 3.5" />
+  </svg>
+);
+
+export const Plus = (p: I) => (
+  <svg {...base(p)}>
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+
+export const Pencil = (p: I) => (
+  <svg {...base(p)}>
+    <path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3Z" />
+    <path d="m13.5 7.5 3 3" />
+  </svg>
+);
+
+export const ChevronLeft = (p: I) => (
+  <svg {...base({ strokeWidth: 2, ...p })}>
+    <path d="m15 6-6 6 6 6" />
+  </svg>
+);
+
+export const ChevronRight = (p: I) => (
+  <svg {...base({ strokeWidth: 2, ...p })}>
+    <path d="m9 6 6 6-6 6" />
+  </svg>
+);
+
+export const ExternalLink = (p: I) => (
+  <svg {...base(p)}>
+    <path d="M14 4h6v6M20 4l-9 9" />
+    <path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+  </svg>
+);
+
+export const Sparkle = (p: I) => (
+  <svg {...base(p)}>
+    <path d="M12 3.5 13.9 9.1 19.5 11 13.9 12.9 12 18.5 10.1 12.9 4.5 11 10.1 9.1Z" />
+    <path d="M19 3v3M17.5 4.5h3" />
+  </svg>
+);
+
+export const Grip = (p: I) => (
+  <svg {...base(p)}>
+    <circle cx="9" cy="6" r="1.3" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="6" r="1.3" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="12" r="1.3" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="12" r="1.3" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="18" r="1.3" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="18" r="1.3" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const Refresh = (p: I) => (
+  <svg {...base(p)}>
+    <path d="M20 12a8 8 0 1 1-2.3-5.7" />
+    <path d="M20 4v5h-5" />
+  </svg>
+);
+
+export const Warning = (p: I) => (
+  <svg {...base(p)}>
+    <path d="M12 4 2.8 19.5h18.4L12 4Z" />
+    <path d="M12 10v4M12 17.3v.2" />
+  </svg>
+);
+
+export const Info = (p: I) => (
+  <svg {...base(p)}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 11v5M12 8v.2" />
+  </svg>
+);

@@ -9,11 +9,11 @@ npm i keshi-ui@github:headformula-hq/keshi-ui#vX.Y.Z
 
 | Export | Contenuto | Uso |
 |---|---|---|
-| `keshi-ui` (`.`) | Primitive: `Card`, `PageHeader`, `Badge`, `LiveBadge`, `Button`, `Table`/`Th`/`Tr`/`Td`, `EmptyState`, `Skeleton`, `Modal`, `ToastProvider`/`useToast`, `cx` | `import { Button, Card } from "keshi-ui";` |
+| `keshi-ui` (`.`) | Primitive: `Card`, `PageHeader`, `Badge`, `LiveBadge`, `Button`, `Table`/`Th`/`Tr`/`Td`, `EmptyState`, `Skeleton`, `Modal`, `ToastProvider`/`useToast`, `Field`, `Input`/`Select`/`Textarea` (+ `FIELD_CLASS`), `Chip`, `Tabs`, `ProgressBar`, `Stat`, `cx` | `import { Button, Card } from "keshi-ui";` |
 | `keshi-ui/shell` | `AppShell`, `Sidebar`, `Topbar`, `ThemeToggle`, `THEME_INIT_SCRIPT`, `ShaderBackground`, `GlassVeil`, `isActivePath`, tipi `IconName`/`SidebarItem`/`SidebarSection`/`SidebarProps` | `import { AppShell } from "keshi-ui/shell";` |
-| `keshi-ui/icons` | Set di icone SVG (`Overview`, `Materials`, `Tag`, `Swap`, `Bell`, `Gear`, `Upload`, `Cards`, `Send`, `Trash`, `Shield`, `Logout`, `Sun`, `Moon`, ecc.) | `import { Overview } from "keshi-ui/icons";` |
+| `keshi-ui/icons` | Set di icone SVG (`Overview`, `Materials`, `Tag`, `Swap`, `Bell`, `Gear`, `Upload`, `Cards`, `Send`, `Trash`, `Shield`, `Logout`, `Sun`, `Moon`, `Image`, `Plus`, `Pencil`, `ChevronLeft`/`ChevronRight`, `ExternalLink`, `Sparkle`, `Grip`, `Refresh`, `Warning`, `Info`, ecc.) | `import { Overview } from "keshi-ui/icons";` |
 | `keshi-ui/styles.css` | Token CSS (colori, spaziature) e utility condivise (`.glass`, `.sidebar-link`, `.eyebrow`, ecc.) | `@import "keshi-ui/styles.css";` in `app/globals.css` |
-| `keshi-ui/fonts/*` | I file `.otf` di Creato Display | Referenziati da `localFont` nell'app: `../node_modules/keshi-ui/dist/fonts/*.otf` |
+| `keshi-ui/fonts/*` | I file `.otf` di Creato Display e la licenza `LICENSE-CreatoDisplay.txt` (SIL Open Font License 1.1) | Referenziati da `localFont` nell'app: `../node_modules/keshi-ui/dist/fonts/*.otf` |
 
 ## Adottare in un'app
 
@@ -108,15 +108,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 ```
 
+### 4. Comportamenti da conoscere (v0.2.0)
+
+- `useToast().push({ title, description?, tone?, action? })`: con `action: { label, href }` il toast mostra un link che si apre in una nuova scheda (`rel="noopener noreferrer"`) e resta 6 s invece di 4.
+- `Modal`: all'apertura porta il focus sul primo controllo del `footer` (o sulla card), blocca lo scroll del `body` e alla chiusura ripristina focus e scroll. Nessun portal: rende in-place.
+- `ShaderBackground`: con `prefers-reduced-motion: reduce` disegna un solo fotogramma; il loop si ferma quando la scheda è nascosta.
+- `Field` avvolge il controllo in una `<label>` (o usa `htmlFor`), così `getByLabelText` funziona senza `id`; `help`/`error` non entrano nel nome accessibile.
+- Import interni `next/link.js` e `next/navigation.js` con estensione: la dist si carica anche con l'`import()` nativo di Node (Vitest senza `server.deps.inline`).
+
 ## Rilasciare una nuova versione
 
 ```bash
 # 1. versione SENZA tag (il tag deve arrivare dopo dist)
-npm version 0.1.0 --no-git-tag-version
+npm version 0.2.0 --no-git-tag-version
 # 2. verifica + build
 npm run release
 # 3. un solo commit con versione e dist
-git add -A && git commit -m "release: v0.1.0"
+git add -A && git commit -m "release: v0.2.0"
 # 4. tag ANNOTATO e push esplicito
-git tag -a v0.1.0 -m "v0.1.0" && git push origin main && git push origin v0.1.0
+git tag -a v0.2.0 -m "v0.2.0" && git push origin main v0.2.0
 ```

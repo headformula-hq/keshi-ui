@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import * as icons from "./index.js";
 
-const NAMES = ["Logo", "KeshiLogo", "Sun", "Moon", "Overview", "Materials", "Tag", "Swap", "Bell", "Close", "Check", "Search", "ChevronDown", "ArrowUpRight", "TrendArrow", "Gear", "Upload", "Cards", "Send", "Trash", "Shield", "Logout"] as const;
+const NAMES = ["Logo", "KeshiLogo", "Sun", "Moon", "Overview", "Materials", "Tag", "Swap", "Bell", "Close", "Check", "Search", "ChevronDown", "ArrowUpRight", "TrendArrow", "Gear", "Upload", "Cards", "Send", "Trash", "Shield", "Logout", "Image", "Plus", "Pencil", "ChevronLeft", "ChevronRight", "ExternalLink", "Sparkle", "Grip", "Refresh", "Warning", "Info"] as const;
 
 describe("icons", () => {
   it.each(NAMES)("%s renderizza un <svg> con stroke currentColor e dimensione di default", (name) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation.js";
 import type { ReactNode } from "react";
 import { Sidebar, type SidebarProps } from "./sidebar.js";
 import { Topbar } from "./topbar.js";

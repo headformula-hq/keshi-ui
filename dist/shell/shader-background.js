@@ -163,22 +163,46 @@ export function ShaderBackground() {
             gl.viewport(0, 0, canvas.width, canvas.height);
         };
         resize();
-        window.addEventListener("resize", resize);
         const start = performance.now() - 14000; // begin mid-flow so it's never static at load
-        let raf = 0;
-        const render = () => {
+        const frame = () => {
             const isDark = document.documentElement.classList.contains("dark");
             gl.uniform2f(uRes, canvas.width, canvas.height);
             gl.uniform1f(uTime, (performance.now() - start) / 1000);
             gl.uniform1f(uLight, isDark ? 0.0 : 1.0);
             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-            raf = requestAnimationFrame(render);
         };
-        render();
+        // prefers-reduced-motion: un solo fotogramma, ridisegnato solo su resize e cambio
+        // tema (classe di <html>), nessun loop. Altrimenti loop rAF, fermato quando la
+        // scheda è nascosta e ripreso quando torna visibile.
+        const reduce = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let raf = 0;
+        const loop = () => { frame(); raf = requestAnimationFrame(loop); };
+        const stop = () => { if (raf) {
+            cancelAnimationFrame(raf);
+            raf = 0;
+        } };
+        const play = () => { if (!raf)
+            loop(); };
+        const onResize = () => { resize(); if (reduce)
+            frame(); };
+        window.addEventListener("resize", onResize);
+        const onVisibility = () => { if (reduce)
+            return; if (document.hidden)
+            stop();
+        else
+            play(); };
+        document.addEventListener("visibilitychange", onVisibility);
+        const themeObserver = reduce ? new MutationObserver(() => frame()) : null;
+        themeObserver?.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+        if (reduce)
+            frame();
+        else if (!document.hidden)
+            loop();
         return () => {
-            if (raf)
-                cancelAnimationFrame(raf);
-            window.removeEventListener("resize", resize);
+            stop();
+            themeObserver?.disconnect();
+            window.removeEventListener("resize", onResize);
+            document.removeEventListener("visibilitychange", onVisibility);
         };
     }, []);
     return (_jsx("canvas", { ref: canvasRef, "aria-hidden": true, className: "fixed inset-0 -z-10 h-full w-full scale-110 opacity-90 blur-[2px] dark:blur-[12px]" }));

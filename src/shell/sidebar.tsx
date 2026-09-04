@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "next/link.js";
 import type { ReactNode } from "react";
 import { Overview, Materials, Tag, Swap, Bell, Gear, Upload, Cards, Send, Trash, Shield, Logout, type IconProps } from "../icons/index.js";
 

@@ -14,3 +14,5 @@ export { Field } from "./primitives/field.js";
 export { Input, Select, Textarea, FIELD_CLASS } from "./primitives/input.js";
 export { Chip } from "./primitives/chip.js";
 export { Tabs } from "./primitives/tabs.js";
+export { ProgressBar } from "./primitives/progress-bar.js";
+export { Stat } from "./primitives/stat.js";

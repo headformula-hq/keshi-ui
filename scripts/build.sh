@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Compila i sorgenti e copia gli asset non-TS (css, font) in dist.
+# Compila i sorgenti e copia gli asset non-TS (css, font e relativa licenza OFL) in dist.
 set -euo pipefail
 rm -rf dist
 npx tsc -p tsconfig.build.json
 cp src/styles.css dist/styles.css
-mkdir -p dist/fonts && cp src/fonts/*.otf dist/fonts/
+mkdir -p dist/fonts && cp src/fonts/*.otf dist/fonts/ && cp src/fonts/LICENSE-*.txt dist/fonts/
 
 # KESHI_UI_VERSION: il sorgente tiene il segnaposto "0.0.0", qui ci scriviamo la
 # versione vera letta da package.json (niente sed: la sostituzione è esatta e in JS).

@@ -1,9 +1,15 @@
 import { type ReactNode } from "react";
-type Tone = "neutral" | "up" | "down";
-type ToastInput = {
+export type ToastTone = "neutral" | "up" | "down";
+/** Link opzionale sotto la descrizione (es. "Vedi su Shopify"): si apre in una nuova scheda. */
+export type ToastAction = {
+    label: string;
+    href: string;
+};
+export type ToastInput = {
     title: string;
     description?: string;
-    tone?: Tone;
+    tone?: ToastTone;
+    action?: ToastAction;
 };
 export declare function ToastProvider({ children }: {
     children: ReactNode;
@@ -11,4 +17,3 @@ export declare function ToastProvider({ children }: {
 export declare function useToast(): {
     push: (t: ToastInput) => void;
 };
-export {};

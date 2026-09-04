@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Sidebar, ThemeToggle, THEME_INIT_SCRIPT, isActivePath, AppShell, Topbar } from "./index.js";
-vi.mock("next/link", () => ({ default: ({ href, children, ...rest }: any) => <a href={href} {...rest}>{children}</a> }));
-vi.mock("next/navigation", () => ({ usePathname: () => "/dashboard/import" }));
+vi.mock("next/link.js", () => ({ default: ({ href, children, ...rest }: any) => <a href={href} {...rest}>{children}</a> }));
+vi.mock("next/navigation.js", () => ({ usePathname: () => "/dashboard/import" }));
 
 describe("isActivePath", () => {
   it("exact richiede uguaglianza; altrimenti prefisso con /", () => {

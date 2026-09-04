@@ -33,3 +33,17 @@ export const Send = (p) => (_jsx("svg", { ...base(p), children: _jsx("path", { d
 export const Trash = (p) => (_jsx("svg", { ...base(p), children: _jsx("path", { d: "M4 7h16M9.5 7V4.5h5V7M6.5 7l.8 12a1.5 1.5 0 0 0 1.5 1.4h6.4a1.5 1.5 0 0 0 1.5-1.4l.8-12" }) }));
 export const Shield = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("path", { d: "M12 3.5 5 6.2v5.3c0 4.2 2.9 7.6 7 8.9 4.1-1.3 7-4.7 7-8.9V6.2L12 3.5Z" }), _jsx("path", { d: "m9.5 12 1.8 1.8L15 10.3" })] }));
 export const Logout = (p) => (_jsx("svg", { ...base(p), children: _jsx("path", { d: "M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M15 8l4 4-4 4M19 12H9" }) }));
+// --- v0.2.0: icone per il catalogo (stesso contratto base(): 24 viewBox, 1.7, currentColor) ---
+// Attenzione: `Image` ombreggia il costruttore DOM `Image` nel modulo che la importa;
+// chi usa anche `new Image()` importi `Image as ImageIcon`.
+export const Image = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("rect", { x: "3.5", y: "5", width: "17", height: "14", rx: "2.2" }), _jsx("circle", { cx: "9", cy: "10", r: "1.6" }), _jsx("path", { d: "m3.5 16.5 4.6-4.6a1.5 1.5 0 0 1 2.1 0L15 16.7" }), _jsx("path", { d: "m13 14.7 1.9-1.9a1.5 1.5 0 0 1 2.1 0l3.5 3.5" })] }));
+export const Plus = (p) => (_jsx("svg", { ...base(p), children: _jsx("path", { d: "M12 5v14M5 12h14" }) }));
+export const Pencil = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("path", { d: "M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3Z" }), _jsx("path", { d: "m13.5 7.5 3 3" })] }));
+export const ChevronLeft = (p) => (_jsx("svg", { ...base({ strokeWidth: 2, ...p }), children: _jsx("path", { d: "m15 6-6 6 6 6" }) }));
+export const ChevronRight = (p) => (_jsx("svg", { ...base({ strokeWidth: 2, ...p }), children: _jsx("path", { d: "m9 6 6 6-6 6" }) }));
+export const ExternalLink = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("path", { d: "M14 4h6v6M20 4l-9 9" }), _jsx("path", { d: "M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" })] }));
+export const Sparkle = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("path", { d: "M12 3.5 13.9 9.1 19.5 11 13.9 12.9 12 18.5 10.1 12.9 4.5 11 10.1 9.1Z" }), _jsx("path", { d: "M19 3v3M17.5 4.5h3" })] }));
+export const Grip = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("circle", { cx: "9", cy: "6", r: "1.3", fill: "currentColor", stroke: "none" }), _jsx("circle", { cx: "15", cy: "6", r: "1.3", fill: "currentColor", stroke: "none" }), _jsx("circle", { cx: "9", cy: "12", r: "1.3", fill: "currentColor", stroke: "none" }), _jsx("circle", { cx: "15", cy: "12", r: "1.3", fill: "currentColor", stroke: "none" }), _jsx("circle", { cx: "9", cy: "18", r: "1.3", fill: "currentColor", stroke: "none" }), _jsx("circle", { cx: "15", cy: "18", r: "1.3", fill: "currentColor", stroke: "none" })] }));
+export const Refresh = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("path", { d: "M20 12a8 8 0 1 1-2.3-5.7" }), _jsx("path", { d: "M20 4v5h-5" })] }));
+export const Warning = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("path", { d: "M12 4 2.8 19.5h18.4L12 4Z" }), _jsx("path", { d: "M12 10v4M12 17.3v.2" })] }));
+export const Info = (p) => (_jsxs("svg", { ...base(p), children: [_jsx("circle", { cx: "12", cy: "12", r: "8.5" }), _jsx("path", { d: "M12 11v5M12 8v.2" })] }));
