@@ -1,4 +1,4 @@
-export const KESHI_UI_VERSION = "0.2.0";
+export const KESHI_UI_VERSION = "0.2.1";
 export { cx } from "./primitives/cx.js";
 export { Card } from "./primitives/card.js";
 export { PageHeader } from "./primitives/page-header.js";
