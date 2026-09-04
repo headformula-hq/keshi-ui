@@ -9,7 +9,8 @@ import { cx } from "./cx.js";
  * as="span": chip non interattiva che ospita un bottone "Rimuovi" interno (§3.5);
  * niente aria-pressed perché non è un controllo.
  * Stato disabilitato: le stesse due utility di Button (`disabled:cursor-not-allowed
- * disabled:opacity-50`), perché `.chip` impone `cursor: pointer`.
+ * disabled:opacity-50`). `.chip` impone `cursor: pointer`, ma vive in
+ * `@layer components` (v0.2.2), quindi la utility (layer utilities) vince.
  */
 export function Chip({ active = false, onClick, disabled, className, children, as = "button", }) {
     const cls = cx("chip", active && "chip-active", className);

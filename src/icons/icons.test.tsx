@@ -14,6 +14,20 @@ describe("icons", () => {
       expect(svg.getAttribute("stroke")).toBe("currentColor");
     }
   });
+  it("è decorativa per default: aria-hidden=\"true\"", () => {
+    const { container } = render(<icons.Upload />);
+    expect(container.querySelector("svg")!.getAttribute("aria-hidden")).toBe("true");
+  });
+  it("con aria-label non è nascosta (nessun aria-hidden)", () => {
+    const { container } = render(<icons.Upload aria-label="Carica" />);
+    const svg = container.querySelector("svg")!;
+    expect(svg.hasAttribute("aria-hidden")).toBe(false);
+    expect(svg.getAttribute("aria-label")).toBe("Carica");
+  });
+  it("un aria-hidden esplicito del consumer vince", () => {
+    const { container } = render(<icons.Upload aria-hidden={false} />);
+    expect(container.querySelector("svg")!.getAttribute("aria-hidden")).toBe("false");
+  });
   it("le props sovrascrivono i default", () => {
     const { container } = render(<icons.Sun width={32} height={32} />);
     expect(container.querySelector("svg")!.getAttribute("width")).toBe("32");

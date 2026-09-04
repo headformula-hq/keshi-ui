@@ -2,7 +2,10 @@ import type { SVGProps } from "react";
 
 export type IconProps = SVGProps<SVGSVGElement>;
 type I = IconProps;
+// Le icone sono decorative per default (`aria-hidden`): un `aria-label` o un
+// `aria-hidden` espliciti passati dal consumer vincono (arrivano dopo nello spread).
 const base = (p: I) => ({
+  "aria-hidden": p["aria-label"] ? undefined : true,
   width: 18,
   height: 18,
   viewBox: "0 0 24 24",

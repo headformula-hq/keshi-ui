@@ -122,6 +122,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 - `FIELD_CLASS` (`Input`/`Select`/`Textarea`) non contiene più `outline-none`: torna l'anello `:focus-visible` globale di `styles.css`, in aggiunta a `focus:border-brand/50`.
 - `Stat`: una `caption` vuota o falsy (`0`, `""`, `null`) non rende la terza riga.
 
+### 6. Novità v0.2.2 — `@layer components` (leggere prima del bump)
+
+- Tutte le classi di `styles.css` (`.card*`, `.chip*`, `.glass*`, `.eyebrow`, `.tnum`, `.rise`, `.pop-in`, `.no-scrollbar`, `.sidebar-link:focus-visible`) ora vivono in un unico `@layer components`. Poiché l'app ospite dichiara `@layer theme, base, components, utilities;`, **le utility Tailwind battono le classi del pacchetto** senza `!`: `card border-dashed`, `card bg-surface2`, `chip disabled:cursor-not-allowed`, `dark:*` funzionano. Fino alla v0.2.1 le classi erano fuori layer e vincevano su tutto: gli override `!…` restano validi ma non sono più necessari. Non usare `@import "keshi-ui/styles.css" layer(components)` lato app: `@custom-variant` non può essere nested.
+- `Sidebar`: il link non porta più `border-transparent`; il riposo è dato da `.glass-hover { border-color: transparent }` e attivo/hover riacquistano il bordo frosted. Aspetto invariato.
+- `Toast`: il bordo tonale (`border-line` / `border-up/40` / `border-down/40`) ora è visibile (prima era coperto dal bordo di `.glass`): in chiaro il neutro passa da bianco .6 a `line`, up/down mostrano il colore. Ricontrollare a vista in chiaro e scuro.
+- Icone (`keshi-ui/icons`): `aria-hidden="true"` per default; passando `aria-label` (o un `aria-hidden` esplicito) il default viene rimosso/sovrascritto. `KeshiLogo` non passa da `base()` e resta com'era.
+- **keshi-live (oggi v0.1.1)** — 6 punti cambieranno aspetto al bump, perché la utility di colore bordo ora vince su `.glass`/`.glass-hover:hover`:
+  - `app/(protected)/onboarding/privato/page.tsx:17`, `onboarding/metalli/page.tsx:23`, `onboarding/gioielleria/page.tsx:11` e `:15`, `components/onboarding/SegmentCards.tsx:20` (`glass-hover … border border-line/60`): il bordo resta `line/60` anche in hover (perde il viraggio al bianco traslucido; background e blur continuano a cambiare). Per il look precedente togliere `border-line/60`.
+  - `components/marketing/PricingTable.tsx:57` (`border-brand glass`, card featured): acquista il bordo brand (probabilmente l'intento originale).
+
 ## Rilasciare una nuova versione
 
 ```bash
