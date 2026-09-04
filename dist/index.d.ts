@@ -10,3 +10,7 @@ export { EmptyState } from "./primitives/empty-state.js";
 export { Skeleton } from "./primitives/skeleton.js";
 export { Modal } from "./primitives/modal.js";
 export { ToastProvider, useToast } from "./primitives/toast.js";
+export { Field } from "./primitives/field.js";
+export { Input, Select, Textarea, FIELD_CLASS } from "./primitives/input.js";
+export { Chip } from "./primitives/chip.js";
+export { Tabs, type TabItem } from "./primitives/tabs.js";
